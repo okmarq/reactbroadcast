@@ -1,20 +1,24 @@
-import React, { useContext } from 'react';
-import { AuthContext } from './AuthContext';
+import React, { useContext, useState } from 'react';
+import { AuthContext } from '@/services/AuthContext';
 
 const Logout: React.FC = () => {
+  const [error, setError] = useState('');
+
   const authContext = useContext(AuthContext);
 
   const handleLogout = async () => {
     try {
-      // Call the logout function from the auth context
       await authContext?.logout();
     } catch (error) {
-      // Handle error
+      setError('Failed to logout.');
     }
   };
 
   return (
-    <button onClick={handleLogout}>Logout</button>
+    <>
+      <button onClick={handleLogout}>Logout</button>
+      {error && <p>{error}</p>}
+    </>
   );
 };
 
