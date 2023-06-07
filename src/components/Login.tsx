@@ -14,7 +14,7 @@ const Login: React.FC = () => {
             await authContext?.login(email, password);
         } catch (error) {
             console.log(error)
-            setError('Failed to login.');
+            setError('Invalid email or password.');
         }
     };
 
